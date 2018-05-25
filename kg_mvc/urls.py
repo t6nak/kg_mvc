@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path
 from kg import views
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("", views.index )
+    path('admin/', admin.site.urls, name="admin"),
+    path("", views.index, name="index" )
 ]

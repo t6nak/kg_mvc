@@ -9,11 +9,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 </head>
 <body>
+
+
 <form class="form-horizontal" method="post">
+  {% csrf_token %}
 <fieldset>
 
 <!-- Form Name -->
-<legend>Form Name</legend>
+<legend>Weather data</legend>
 
 <!-- Text input-->
 <div class="form-group">
@@ -56,11 +59,27 @@
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
     <button id="singlebutton" name="singlebutton" class="btn btn-primary">Saada</button>
-  </div>
 </div>
 
+</div>
 </fieldset>
 </form>
+
+<h1> Existing Items </h1>
+{%if weather_records %}
+  {% for weather_record in weather_records %}
+    <div>
+      <p>Temperature: {{weather_record.temperature }}</p>
+      <p>Humidity: {{weather_record.humidity }}</p>
+      <p>Direction: {{weather_record.wind_direction }}</p>
+      <p>Wind Intensity: {{weather_record.wind_strenght}}</p>
+      <p>Time of record: {{weather_record.date_of_record }}</p>
+
+    </div>
+  {% endfor %}
+{% else %}
+  <p><strong>There are no records.</strong></p>
+{% endif %}
 
 </body>
 </html>

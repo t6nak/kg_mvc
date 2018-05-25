@@ -1,10 +1,15 @@
-from django import forms
+
+from kg.models import WeatherData
+from django.forms import ModelForm
 
 
-WIND_DIRECTION_CHOICES = ("NORTH", "SOUTH", "EAST", "WEST")
+WIND_DIRECTION_CHOICES = (("North","NORTH"),
+                          ("South","SOUTH"),
+                          ("East","EAST"),
+                          ("West", "WEST")
+                          )
 
-class WeatherData(forms.Form):
-    temperature = forms.FloatField(required=True)
-    humidity = forms.IntegerField(required=True)
-    wind_strenght = forms.IntegerField(required=True)
-    wind_direction = forms.CharField(required=True)
+class WeatherDataForm(ModelForm):
+    class Meta:
+        model = WeatherData
+        fields = ["temperature", "humidity", "wind_direction" ,"wind_strenght" ]
